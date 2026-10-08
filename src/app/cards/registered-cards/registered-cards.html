@@ -2,21 +2,21 @@
   <div class="card">
     <h2>Novo Cartão</h2>
 
-    <form class="form">
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="form">
       <div class="form-group">
         <label for="name">Nome do cartão: </label>
-        <input type="text" id="name" name="name" placeholder="Meu cartão" />
+        <input formControlName="name" type="text" id="name" name="name" placeholder="Meu cartão" />
       </div>
       <div class="form-group">
         <label for="name">Bandeira: </label>
-        <select>
-          <option>Selecione...</option>
-          <option>American Express</option>
-          <option>Dinners</option>
-          <option>Elo</option>
-          <option>Hipercard</option>
-          <option>Mastercard</option>
-          <option>Visa</option>
+        <select formControlName="brand">
+          <option value="" >Selecione...</option>
+          <option value="AMERICAN_EXPRESS">American Express</option>
+          <option value="DINERS">Dinners</option>
+          <option value="ELO">Elo</option>
+          <option value="HIPERCARD">Hipercard</option>
+          <option value="MASTERCARD">Mastercard</option>
+          <option value="VISA">Visa</option>
         </select>
       </div>
 
