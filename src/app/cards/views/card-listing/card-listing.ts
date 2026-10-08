@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CardService } from '../service/card-service';
+import { CardService } from '../../service/card-service';
 import { Observable } from 'rxjs';
-import { PageResult } from '../../common/models/pagination/page-result';
-import { CardDetails } from '../models/card-details.model';
+import { PageResult } from '../../../common/models/pagination/page-result';
+import { CardDetails } from '../../models/card-details.model';
 
 @Component({
   selector: 'app-card-listing',
