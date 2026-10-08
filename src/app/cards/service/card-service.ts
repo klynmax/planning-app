@@ -3,15 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DataCardsForm } from '../models/data-cards-forms.model';
 import { CardDetails } from '../models/card-details.model';
+import { PageResult } from '../../common/models/pagination/page-result';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CardService {
   http = inject(HttpClient);
+  baseUrl = 'http://localhost:8080/cards'
 
   create(date: DataCardsForm): Observable<CardDetails> {
-    const url = 'http://localhost:8080/cards'
-    return this.http.post<CardDetails>(url, date);
+    return this.http.post<CardDetails>(this.baseUrl, date);
+  }
+
+  getList(page: number = 0, size: number = 10): Observable<PageResult<CardDetails>> {
+    const url = `${this.baseUrl}?page=${page}&size=${size}`;
+    return this.http.get<PageResult<CardDetails>>(url);
   }
 }

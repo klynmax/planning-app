@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CardService } from '../service/card-service';
 import { DataCardsForm } from '../models/data-cards-forms.model';
 import { CardDetails } from '../models/card-details.model';
-import { ValidationErrorResponse } from '../models/validation-error.model';
+import { ValidationErrorResponse } from '../../common/models/validation/validation-error.model';
 import { RegisteredCardForms } from '../models/registered-card-forms.model';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
