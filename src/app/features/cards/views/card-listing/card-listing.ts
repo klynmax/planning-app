@@ -9,10 +9,11 @@ import { PageResult } from '../../../../shared/models/pagination/page-result';
 import { RECORD_SUCCESSFULLY_UPDATE } from '../../../../shared/constants/shared.constants';
 import { ACTIONS, BRAND, NAME, REGISTER_NEW, STATUS } from '../../constants/cards.constants';
 import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
+import { CardBrandIcon } from '../../../../shared/components/card-brand-icon/card-brand-icon';
 
 @Component({
   selector: 'app-card-listing',
-  imports: [CommonModule, RouterLink, Breadcrumb],
+  imports: [CommonModule, RouterLink, Breadcrumb, CardBrandIcon],
   templateUrl: './card-listing.html',
   styleUrl: './card-listing.scss',
 })
@@ -39,6 +40,17 @@ export class CardListing implements OnInit {
   readonly ACTIONS = ACTIONS;
   readonly REGISTER_NEW = REGISTER_NEW;
   readonly RECORD_SUCCESSFULLY_UPDATE = RECORD_SUCCESSFULLY_UPDATE;
+
+  private readonly brandIcons: Record<string, string> = {
+    VISA:              'fa-brands fa-cc-visa',
+    MASTERCARD:        'fa-brands fa-cc-mastercard',
+    AMERICAN_EXPRESS:  'fa-brands fa-cc-amex',
+    DINERS:            'fa-brands fa-cc-diners-club',
+    // ELO e HIPERCARD não existem no FA — usaremos SVG inline (ver CSS)
+    ELO:               'brand-svg brand-elo',
+    HIPERCARD:         'brand-svg brand-hipercard',
+  };
+
 
   ngOnInit(): void {
     this.cardListing();
@@ -100,6 +112,10 @@ export class CardListing implements OnInit {
       this.toast.success(RECORD_SUCCESSFULLY_UPDATE);
       this.cardListing();
     })
+  }
+
+  getBrandIcon(brand: string): string {
+    return this.brandIcons[brand?.toUpperCase()] ?? 'fa-solid fa-credit-card';
   }
 
 }

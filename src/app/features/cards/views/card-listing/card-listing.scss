@@ -1,0 +1,22 @@
+.brand-icon {
+  font-size: 1.6rem;
+  vertical-align: middle;
+}
+
+.brand-svg {
+  display: inline-block;
+  width: 2.2rem;
+  height: 1.4rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Cole aqui o SVG em base64 ou URL do seu asset */
+.brand-elo {
+  background-image: url('/assets/brands/elo.svg');
+}
+
+.brand-hipercard {
+  background-image: url('/assets/brands/hipercard.svg');
+}
