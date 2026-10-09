@@ -3,10 +3,11 @@ import { CardService } from '../../service/card-service';
 import { Observable } from 'rxjs';
 import { PageResult } from '../../../common/models/pagination/page-result';
 import { CardDetails } from '../../models/card-details.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-card-listing',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './card-listing.html',
   styleUrl: './card-listing.scss',
 })

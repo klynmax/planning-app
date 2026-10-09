@@ -1,1 +1,38 @@
-<p>card-listing works!</p>
+<main class="content">
+  <div class="card-full">
+    @if(list$ | async; as list) {
+      <table class="datatable">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Bandeira</th>
+            <th>Status</th>
+            <th class="text-center">Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for(card of list.content; track card.id) {
+            <tr>
+              <td> {{ card.name}} </td>
+              <td> {{ card.brand}} </td>
+              <td>
+                <span class="badge badge-warning">
+                  Inativo
+                </span>
+              </td>
+              <td class="text-center">
+                <button class="icon-btn">
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+                <button class="icon-btn dange">
+                  <i class="fa-solid fa-ban"></i>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</main>
