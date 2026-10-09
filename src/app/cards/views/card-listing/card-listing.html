@@ -33,6 +33,41 @@
           }
         </tbody>
       </table>
+
+      <!-- Paginação -->
+       <div class="table-footer">
+        <span>
+          Mostrando {{ initialRecord(list) }} - {{ finalRecord(list) }}
+          de {{ list.totalElements }} Registro
+        </span>
+        <div class="pagination">
+          <button
+            class="page-btn"
+            [class.disabled]="list.first"
+            (click)="navigationPrevious(list);"
+          >
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          @for (pages of pages(list.totalPages); track pages) {
+            <button
+              class="page-btn"
+              [class.active]="pages === list.number"
+              (click)="navigation(pages)"
+            >
+              {{ pages + 1 }}
+            </button>
+          }
+
+          <button
+            class="page-btn"
+            [class.disabled]="list.last"
+            (click)="navigationNext(list);"
+          >
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+       </div>
     }
   </div>
 </main>

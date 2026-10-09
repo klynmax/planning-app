@@ -16,7 +16,7 @@ export class CardListing implements OnInit {
   service = inject(CardService);
   list$!: Observable<PageResult<CardDetails>>;
   currentPage = 0;
-  size = 10;
+  size = 2;
 
 
   ngOnInit(): void {
@@ -31,4 +31,37 @@ export class CardListing implements OnInit {
     this.currentPage = page;
     this.cardListing();
   }
+
+  navigationNext(listing: PageResult<CardDetails>) {
+    if(!listing.last) {
+      this.navigation(listing.number + 1);
+    }
+  }
+
+  navigationPrevious (listing: PageResult<CardDetails>) {
+    if(!listing.first) {
+      this.navigation(listing.number - 1);
+    }
+  }
+
+  pages(allPages: number): number[] {
+    return Array.from({ length: allPages }, (value, index) => index);
+  }
+
+  initialRecord(listing: PageResult<CardDetails>) {
+    if(listing.totalElements === 0) {
+      return 0
+    }
+
+    return (listing.number * listing.size) + 1;
+  }
+
+  finalRecord(listing: PageResult<CardDetails>) {
+     if(listing.totalElements === 0) {
+      return 0
+    }
+
+    return Math.min( (listing.number + 1) * listing.size, listing.totalElements);
+  }
+
 }
