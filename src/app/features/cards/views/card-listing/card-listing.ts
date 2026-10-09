@@ -8,10 +8,11 @@ import { CardDetails } from '../../models/card-details.model';
 import { PageResult } from '../../../../shared/models/pagination/page-result';
 import { RECORD_SUCCESSFULLY_UPDATE } from '../../../../shared/constants/shared.constants';
 import { ACTIONS, BRAND, NAME, REGISTER_NEW, STATUS } from '../../constants/cards.constants';
+import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 @Component({
   selector: 'app-card-listing',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, Breadcrumb],
   templateUrl: './card-listing.html',
   styleUrl: './card-listing.scss',
 })
@@ -23,6 +24,11 @@ export class CardListing implements OnInit {
   service = inject(CardService);
   toast = inject(ToastrService);
   list$!: Observable<PageResult<CardDetails>>;
+
+  breadcrumb: BreadcrumbItem[] = [
+    { label: 'Cartões', url: '/cards-listing' },
+    { label: 'Listagem de cartões', url: '/cards-listing' },
+  ];
 
   /**
    * Constants

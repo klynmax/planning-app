@@ -1,6 +1,6 @@
 <main class="content">
   <div class="card-full">
-    <h2>{{ idCardEdit ? 'Editar Cartão' : 'Novo Cartão' }}</h2>
+    <h2>{{ idCardEdit ? EDIT_CARD : NEW_CARD }}</h2>
 
     <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="form">
       <div class="form-group">

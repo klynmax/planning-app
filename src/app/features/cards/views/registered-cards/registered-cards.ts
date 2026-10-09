@@ -11,7 +11,7 @@ import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ValidationErrorResponse } from '../../../../shared/models/validation/validation-error.model';
 import { CANCEL, SAVE, UPDATE } from '../../../../shared/constants/shared.constants';
 import { BRAND_LIST, BrandProps } from '../../../../shared/constants/shared.selects.constants';
-import { THE_CARD_NAME_IS_REQUIRED, THE_CARD_NETWORK_IS_MANDATORY } from '../../constants/cards.constants';
+import { EDIT_CARD, NEW_CARD, THE_CARD_NAME_IS_REQUIRED, THE_CARD_NETWORK_IS_MANDATORY } from '../../constants/cards.constants';
 
 @Component({
   selector: 'app-registered-cards',
@@ -35,6 +35,8 @@ export class RegisteredCards implements OnInit {
   readonly SAVE = SAVE;
   readonly CANCEL = CANCEL;
   readonly UPDATE = UPDATE;
+  readonly NEW_CARD = NEW_CARD;
+  readonly EDIT_CARD = EDIT_CARD;
   readonly THE_CARD_NAME_IS_REQUIRED = THE_CARD_NAME_IS_REQUIRED;
   readonly THE_CARD_NETWORK_IS_MANDATORY = THE_CARD_NETWORK_IS_MANDATORY;
 
