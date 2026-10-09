@@ -12,6 +12,7 @@ import { ValidationErrorResponse } from '../../../../shared/models/validation/va
 import { CANCEL, SAVE, UPDATE } from '../../../../shared/constants/shared.constants';
 import { BRAND_LIST, BrandProps } from '../../../../shared/constants/shared.selects.constants';
 import { EDIT_CARD, NEW_CARD, THE_CARD_NAME_IS_REQUIRED, THE_CARD_NETWORK_IS_MANDATORY } from '../../constants/cards.constants';
+import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 @Component({
   selector: 'app-registered-cards',
@@ -19,6 +20,7 @@ import { EDIT_CARD, NEW_CARD, THE_CARD_NAME_IS_REQUIRED, THE_CARD_NETWORK_IS_MAN
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    Breadcrumb
   ],
   templateUrl: './registered-cards.html',
   styleUrl: './registered-cards.scss',
@@ -40,13 +42,26 @@ export class RegisteredCards implements OnInit {
   readonly THE_CARD_NAME_IS_REQUIRED = THE_CARD_NAME_IS_REQUIRED;
   readonly THE_CARD_NETWORK_IS_MANDATORY = THE_CARD_NETWORK_IS_MANDATORY;
 
+  breadcrumb: BreadcrumbItem[] = [
+    { label: 'Cartões', url: '/cards-listing' },
+    { label: this.idCardEdit ? 'Edição de cartão' : 'Cadastro de cartão' },
+  ];
+
   ngOnInit(): void {
     this.form = new FormGroup<RegisteredCardForms>({
       name: new FormControl('', { nonNullable: true, validators: Validators.required }),
       brand: new FormControl('', { nonNullable: true, validators: Validators.required }),
     });
     this.loadDataForEditing();
+    this.buildBreadcrumb();
   }
+
+  private buildBreadcrumb(): void {
+  this.breadcrumb = [
+    { label: 'Cartões', url: '/cards-listing' },
+    { label: this.idCardEdit ? 'Edição de cartão' : 'Cadastro de cartão' }
+  ];
+}
 
   loadDataForEditing() {
     this.idCardEdit = this.activeRoute.snapshot.queryParamMap.get('id');
