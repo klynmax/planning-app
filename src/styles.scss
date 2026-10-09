@@ -518,3 +518,91 @@ body {
 .feedback-close:hover {
     opacity: 1;
 }
+
+/* =========================
+   BREADCRUMB
+   ========================= */
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 18px;
+    margin-bottom: 20px;
+    background: #fdf6f0;                       /* pastel cream */
+    border: 1px solid #f3e0d3;                 /* pastel peach border */
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #8a7a70;                            /* pastel brown text */
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.breadcrumb-item:hover {
+    background: #fbe9dd;                       /* pastel peach hover */
+    color: #5c4a3f;
+}
+
+.breadcrumb-item.is-active {
+    background: #e8f4ef;                       /* pastel mint */
+    color: #4d7a6a;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.breadcrumb-separator {
+    color: #d4b8a5;                            /* pastel separator */
+    font-size: 12px;
+    user-select: none;
+}
+
+/* Variação lavanda */
+.breadcrumb.breadcrumb-lavender {
+    background: #f5f1fb;
+    border-color: #e2d6f0;
+}
+.breadcrumb.breadcrumb-lavender .breadcrumb-item:hover {
+    background: #ebe2f7;
+    color: #5a4a78;
+}
+.breadcrumb.breadcrumb-lavender .breadcrumb-item.is-active {
+    background: #e6dcf5;
+    color: #6a4fa3;
+}
+
+/* Variação azul céu */
+.breadcrumb.breadcrumb-sky {
+    background: #f0f7fb;
+    border-color: #d6e8f3;
+}
+.breadcrumb.breadcrumb-sky .breadcrumb-item:hover {
+    background: #e3f0f8;
+    color: #3f6580;
+}
+.breadcrumb.breadcrumb-sky .breadcrumb-item.is-active {
+    background: #d9ecf7;
+    color: #3f80a8;
+}
+
+/* Variação rosa */
+.breadcrumb.breadcrumb-rose {
+    background: #fdf1f4;
+    border-color: #f5d9e0;
+}
+.breadcrumb.breadcrumb-rose .breadcrumb-item:hover {
+    background: #fbe4ea;
+    color: #7d4a5a;
+}
+.breadcrumb.breadcrumb-rose .breadcrumb-item.is-active {
+    background: #f8dbe4;
+    color: #b04a6a;
+}
