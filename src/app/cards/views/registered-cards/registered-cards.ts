@@ -8,12 +8,16 @@ import { CardService } from '../../service/card-service';
 import { DataCardsForm } from '../../models/data-cards-forms.model';
 import { CardDetails } from '../../models/card-details.model';
 import { ValidationErrorResponse } from '../../../common/models/validation/validation-error.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-registered-cards',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './registered-cards.html',
   styleUrl: './registered-cards.scss',
 })
@@ -78,6 +82,8 @@ export class RegisteredCards implements OnInit {
       .subscribe({
         next: (response) => {
           this.toast.success('Cartão cadastrado/atualizado com sucesso!')
+          this.form.reset();
+          this.idCardEdit = null
         },
         error: (error) => this.onApiError(error)
       })

@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { PageResult } from '../../../common/models/pagination/page-result';
 import { CardDetails } from '../../models/card-details.model';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-card-listing',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './card-listing.html',
   styleUrl: './card-listing.scss',
 })

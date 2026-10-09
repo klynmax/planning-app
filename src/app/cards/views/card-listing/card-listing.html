@@ -1,5 +1,14 @@
 <main class="content">
   <div class="card-full">
+    <button
+    type="button"
+    class="btn-secondary"
+    [routerLink]="['/registered-cards']"
+  >
+  <i class="fa-solid fa-plus"></i>
+    Cadastrar Novo
+  </button>
+    <div class="table-card">
     @if(list$ | async; as list) {
       <table class="datatable">
         <thead>
@@ -81,5 +90,6 @@
         </div>
        </div>
     }
+    </div>
   </div>
 </main>
