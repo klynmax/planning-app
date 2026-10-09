@@ -20,4 +20,16 @@ export class CardService {
     const url = `${this.baseUrl}?page=${page}&size=${size}`;
     return this.http.get<PageResult<CardDetails>>(url);
   }
+
+  getById(id: string): Observable<CardDetails> {
+    return this.http.get<CardDetails>(`${this.baseUrl}/${id}`);
+  }
+
+  update(id: string, data: DataCardsForm): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/${id}`, data);
+  }
+
+  updateStatus(id: string): Observable<void> {
+    return this.http.patch<void>(`${this.baseUrl}/${id}/status`, null);
+  }
 }

@@ -8,6 +8,8 @@ import { CardService } from '../../service/card-service';
 import { DataCardsForm } from '../../models/data-cards-forms.model';
 import { CardDetails } from '../../models/card-details.model';
 import { ValidationErrorResponse } from '../../../common/models/validation/validation-error.model';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-registered-cards',
@@ -18,13 +20,36 @@ import { ValidationErrorResponse } from '../../../common/models/validation/valid
 export class RegisteredCards implements OnInit {
 
   form!: FormGroup<RegisteredCardForms>;
+  activeRoute = inject(ActivatedRoute);
   service = inject(CardService);
   toast = inject(ToastrService);
+  idCardEdit?: string | null;
 
   ngOnInit(): void {
     this.form = new FormGroup<RegisteredCardForms>({
       name: new FormControl('', { nonNullable: true, validators: Validators.required }),
       brand: new FormControl('', { nonNullable: true, validators: Validators.required }),
+    });
+    this.loadDataForEditing();
+  }
+
+  loadDataForEditing() {
+    this.idCardEdit = this.activeRoute.snapshot.queryParamMap.get('id');
+
+    if(!this.idCardEdit) {
+      return;
+    }
+
+    this.service
+    .getById(this.idCardEdit)
+    .subscribe({
+      next: (card) => {
+        this.form.patchValue({
+          name: card.name,
+          brand: card.brand
+        })
+      },
+      error: () => this.toast.error('Erro ao carregar dados do cartão.')
     });
   }
 
@@ -38,15 +63,20 @@ export class RegisteredCards implements OnInit {
   }
 
   handleSubmit() {
+
     if(this.isFormInvalid()) {
       return
     }
+
     const dateCard = this.form.value as DataCardsForm;
-    this.service
-      .create(dateCard)
+
+    const request: Observable<CardDetails | void> = this.idCardEdit ?
+      this.service.update(this.idCardEdit, dateCard)
+      : this.service.create(dateCard);
+
+    request
       .subscribe({
-        next: (response: CardDetails) => {
-          console.log('response: ', response),
+        next: (response) => {
           this.toast.success('Cartão cadastrado/atualizado com sucesso!')
         },
         error: (error) => this.onApiError(error)

@@ -17,16 +17,28 @@
               <td> {{ card.name}} </td>
               <td> {{ card.brand}} </td>
               <td>
-                <span class="badge badge-warning">
-                  Inativo
+                <span
+                  class="badge"
+                  [ngClass]="card.active ? 'badge-success' : 'badge-warning'"
+                >
+                  {{ card.active ? 'Ativo' : 'Inativo' }}
                 </span>
               </td>
               <td class="text-center">
-                <button class="icon-btn">
+                <button
+                  class="icon-btn"
+                  title="Editar"
+                  (click)="prepareEdition(card.id)"
+                >
                   <i class="fa-solid fa-pen"></i>
                 </button>
-                <button class="icon-btn dange">
-                  <i class="fa-solid fa-ban"></i>
+                <button
+                  class="icon-btn"
+                  (click)="updateStatus(card.id)"
+                  [ngClass]="card.active ? 'danger' : 'success'"
+                  [attr.title]="card.active ? 'Desativar' : 'Ativar'"
+                >
+                  <i class="fa-solid" [ngClass]="card.active ? 'fa-ban' : 'fa-check' " ></i>
                 </button>
               </td>
             </tr>

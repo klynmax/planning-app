@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { PageResult } from '../../../common/models/pagination/page-result';
 import { CardDetails } from '../../models/card-details.model';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-card-listing',
@@ -14,9 +16,11 @@ import { CommonModule } from '@angular/common';
 export class CardListing implements OnInit {
 
   service = inject(CardService);
+  router = inject(Router);
+  toast = inject(ToastrService);
   list$!: Observable<PageResult<CardDetails>>;
   currentPage = 0;
-  size = 2;
+  size = 10;
 
 
   ngOnInit(): void {
@@ -62,6 +66,23 @@ export class CardListing implements OnInit {
     }
 
     return Math.min( (listing.number + 1) * listing.size, listing.totalElements);
+  }
+
+  prepareEdition(idCard: string) {
+    this.router.navigate(['/registered-cards'], {
+      queryParams: {
+        id: idCard
+      }
+    });
+  }
+
+  updateStatus(idCard: string) {
+    this.service
+    .updateStatus(idCard)
+    .subscribe(next => {
+      this.toast.success('Registro atualizado com sucesso!');
+      this.cardListing();
+    })
   }
 
 }
