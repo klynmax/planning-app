@@ -1,5 +1,5 @@
 <main class="content">
-  <div class="card">
+  <div class="card-full">
     <h2>{{ idCardEdit ? 'Editar Cartão' : 'Novo Cartão' }}</h2>
 
     <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="form">
@@ -8,7 +8,7 @@
         <input formControlName="name" type="text" id="name" name="name" placeholder="Meu cartão" />
         @if (form.controls.name.hasError('required') && form.controls.name.touched) {
           <span class="form-hint form-hint-error">
-            O nome do cartão é obrigatório
+            {{ THE_CARD_NAME_IS_REQUIRED }}
           </span>
         }
 
@@ -20,19 +20,16 @@
       </div>
       <div class="form-group">
         <label for="name">Bandeira: </label>
-        <select formControlName="brand">
+        <select id="brand" formControlName="brand">
           <option value="" >Selecione...</option>
-          <option value="AMERICAN_EXPRESS">American Express</option>
-          <option value="DINERS">Dinners</option>
-          <option value="ELO">Elo</option>
-          <option value="HIPERCARD">Hipercard</option>
-          <option value="MASTERCARD">Mastercard</option>
-          <option value="VISA">Visa</option>
+          @for (b of brandList; track b.value) {
+            <option [value]="b.value">{{ b.value }}</option>
+          }
         </select>
 
         @if (form.controls.brand.hasError('required') && form.controls.brand.touched) {
           <span class="form-hint form-hint-error">
-            O nome do cartão é obrigatório
+            {{ THE_CARD_NETWORK_IS_MANDATORY }}
           </span>
         }
 
@@ -45,14 +42,14 @@
 
       <div class="form-actions">
         <button type="submit" class="btn-primary">
-          {{ idCardEdit ? 'Atualizar' : 'Salvar' }}
+          {{ idCardEdit ? UPDATE : SAVE }}
         </button>
         <button
           type="button"
           class="btn-secondary"
           [routerLink]="['/cards-listing']"
         >
-          Cancelar
+          {{ CANCEL }}
         </button>
       </div>
     </form>

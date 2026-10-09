@@ -1,11 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { CardService } from '../../service/card-service';
 import { Observable } from 'rxjs';
-import { PageResult } from '../../../common/models/pagination/page-result';
-import { CardDetails } from '../../models/card-details.model';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { Router, RouterLink } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { CardService } from '../../services/card-service';
+import { CardDetails } from '../../models/card-details.model';
+import { PageResult } from '../../../../shared/models/pagination/page-result';
+import { RECORD_SUCCESSFULLY_UPDATE } from '../../../../shared/constants/shared.constants';
+import { ACTIONS, BRAND, NAME, REGISTER_NEW, STATUS } from '../../constants/cards.constants';
 
 @Component({
   selector: 'app-card-listing',
@@ -15,13 +17,22 @@ import { Toast, ToastrService } from 'ngx-toastr';
 })
 export class CardListing implements OnInit {
 
-  service = inject(CardService);
+  size = 10;
+  currentPage = 0;
   router = inject(Router);
+  service = inject(CardService);
   toast = inject(ToastrService);
   list$!: Observable<PageResult<CardDetails>>;
-  currentPage = 0;
-  size = 10;
 
+  /**
+   * Constants
+   */
+  readonly NAME = NAME;
+  readonly BRAND = BRAND;
+  readonly STATUS = STATUS;
+  readonly ACTIONS = ACTIONS;
+  readonly REGISTER_NEW = REGISTER_NEW;
+  readonly RECORD_SUCCESSFULLY_UPDATE = RECORD_SUCCESSFULLY_UPDATE;
 
   ngOnInit(): void {
     this.cardListing();
@@ -80,7 +91,7 @@ export class CardListing implements OnInit {
     this.service
     .updateStatus(idCard)
     .subscribe(next => {
-      this.toast.success('Registro atualizado com sucesso!');
+      this.toast.success(RECORD_SUCCESSFULLY_UPDATE);
       this.cardListing();
     })
   }

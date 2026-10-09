@@ -1,0 +1,7 @@
+export const NAME = 'Nome';
+export const STATUS = 'Status';
+export const ACTIONS = 'Ações';
+export const BRAND = 'Bandeira';
+export const REGISTER_NEW = 'Cadastrar Novo';
+export const THE_CARD_NAME_IS_REQUIRED = 'O nome do cartão é obrigatório';
+export const THE_CARD_NETWORK_IS_MANDATORY = 'A bandeira do cartão é obrigatória';

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DataCardsForm } from '../models/data-cards-forms.model';
 import { CardDetails } from '../models/card-details.model';
-import { PageResult } from '../../common/models/pagination/page-result';
+import { PageResult } from '../../../shared/models/pagination/page-result';
 
 @Injectable({
   providedIn: 'root',

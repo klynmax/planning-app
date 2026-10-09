@@ -1,15 +1,17 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-
-import { CommonModule } from '@angular/common';
-import { ToastrService } from 'ngx-toastr';
-import { RegisteredCardForms } from '../../models/registered-card-forms.model';
-import { CardService } from '../../service/card-service';
-import { DataCardsForm } from '../../models/data-cards-forms.model';
-import { CardDetails } from '../../models/card-details.model';
-import { ValidationErrorResponse } from '../../../common/models/validation/validation-error.model';
-import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { CardService } from '../../services/card-service';
+import { CardDetails } from '../../models/card-details.model';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { DataCardsForm } from '../../models/data-cards-forms.model';
+import { RegisteredCardForms } from '../../models/registered-card-forms.model';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ValidationErrorResponse } from '../../../../shared/models/validation/validation-error.model';
+import { CANCEL, SAVE, UPDATE } from '../../../../shared/constants/shared.constants';
+import { BRAND_LIST, BrandProps } from '../../../../shared/constants/shared.selects.constants';
+import { THE_CARD_NAME_IS_REQUIRED, THE_CARD_NETWORK_IS_MANDATORY } from '../../constants/cards.constants';
 
 @Component({
   selector: 'app-registered-cards',
@@ -23,11 +25,18 @@ import { Observable } from 'rxjs';
 })
 export class RegisteredCards implements OnInit {
 
-  form!: FormGroup<RegisteredCardForms>;
-  activeRoute = inject(ActivatedRoute);
+  idCardEdit?: string | null;
   service = inject(CardService);
   toast = inject(ToastrService);
-  idCardEdit?: string | null;
+  activeRoute = inject(ActivatedRoute);
+  brandList: BrandProps[] = BRAND_LIST;
+  form!: FormGroup<RegisteredCardForms>;
+
+  readonly SAVE = SAVE;
+  readonly CANCEL = CANCEL;
+  readonly UPDATE = UPDATE;
+  readonly THE_CARD_NAME_IS_REQUIRED = THE_CARD_NAME_IS_REQUIRED;
+  readonly THE_CARD_NETWORK_IS_MANDATORY = THE_CARD_NETWORK_IS_MANDATORY;
 
   ngOnInit(): void {
     this.form = new FormGroup<RegisteredCardForms>({
