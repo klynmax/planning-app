@@ -4,12 +4,12 @@
 }
 
 .brand-svg {
-  display: inline-block;
   width: 2.2rem;
   height: 1.4rem;
+  display: inline-block;
   background-size: contain;
-  background-repeat: no-repeat;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Cole aqui o SVG em base64 ou URL do seu asset */
@@ -19,4 +19,10 @@
 
 .brand-hipercard {
   background-image: url('/assets/brands/hipercard.svg');
+}
+
+.actions-cell {
+  gap: 8px;
+  display: flex;
+  align-items: center;
 }

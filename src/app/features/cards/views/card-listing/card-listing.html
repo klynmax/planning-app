@@ -41,10 +41,10 @@
                     {{ card.active ? 'Ativo' : 'Inativo' }}
                   </span>
                 </td>
-                <td>
+                <td class="actions-cell">
                   <button
-                    class="icon-btn"
                     title="Editar"
+                    class="icon-btn"
                     (click)="prepareEdition(card.id)"
                   >
                     <i class="fa-solid fa-pen"></i>
@@ -55,7 +55,7 @@
                     [ngClass]="card.active ? 'danger' : 'success'"
                     [attr.title]="card.active ? 'Desativar' : 'Ativar'"
                   >
-                    <i class="fa-solid" [ngClass]="card.active ? 'fa-ban' : 'fa-check' " ></i>
+                    <i class="fa-solid" [ngClass]="card.active ? 'fa-ban' : 'fa-check'"></i>
                   </button>
                 </td>
               </tr>
