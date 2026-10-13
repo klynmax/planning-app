@@ -1,0 +1,88 @@
+<main class="content">
+  <app-breadcrumb [items]="breadcrumb" theme="sky" separator="›"  />
+  <div class="card-full">
+    <button
+      type="button"
+      class="btn-secondary"
+      [routerLink]="['/']"
+    >
+    <i class="fa-solid fa-plus"></i>
+      {{ REGISTER_NEW }}
+    </button>
+
+    <div class="table-card">
+      @if(list$ | async; as list) {
+        <table class="datatable">
+          <thead>
+            <tr>
+              <th>{{ NAME }}</th>
+              <th>{{ STATUS }}</th>
+              <th class="text-center">{{ ACTIONS }}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(card of list.content; track card.id) {
+              <tr>
+                <td>{{ card.name}}</td>
+                <td>
+                  <span
+                    class="badge"
+                    [ngClass]="card.active ? 'badge-success' : 'badge-warning'"
+                  >
+                    {{ card.active ? 'Ativo' : 'Inativo' }}
+                  </span>
+                </td>
+                <td class="actions-cell">
+                  <button
+                    class="icon-btn"
+                    (click)="updateStatus(card.id)"
+                    [ngClass]="card.active ? 'danger' : 'success'"
+                    [attr.title]="card.active ? 'Desativar' : 'Ativar'"
+                  >
+                    <i class="fa-solid" [ngClass]="card.active ? 'fa-ban' : 'fa-check'"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <!-- Paginação -->
+        <div class="table-footer">
+          <span>
+            Mostrando {{ initialRecord(list) }} - {{ finalRecord(list) }}
+            de {{ list.totalElements }} Registro
+          </span>
+          <div class="pagination">
+            <button
+              class="page-btn"
+              [class.disabled]="list.first"
+              (click)="navigationPrevious(list);"
+            >
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            @for (pages of pages(list.totalPages); track pages) {
+              <button
+                class="page-btn"
+                [class.active]="pages === list.number"
+                (click)="navigation(pages)"
+              >
+                {{ pages + 1 }}
+              </button>
+            }
+
+            <button
+              class="page-btn"
+              [class.disabled]="list.last"
+              (click)="navigationNext(list);"
+            >
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      }
+      </div>
+    </div>
+</main>

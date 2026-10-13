@@ -46,7 +46,6 @@ export class CardListing implements OnInit {
     MASTERCARD:        'fa-brands fa-cc-mastercard',
     AMERICAN_EXPRESS:  'fa-brands fa-cc-amex',
     DINERS:            'fa-brands fa-cc-diners-club',
-    // ELO e HIPERCARD não existem no FA — usaremos SVG inline (ver CSS)
     ELO:               'brand-svg brand-elo',
     HIPERCARD:         'brand-svg brand-hipercard',
   };

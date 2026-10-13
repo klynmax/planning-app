@@ -12,8 +12,8 @@ export class CardService {
   http = inject(HttpClient);
   baseUrl = 'http://localhost:8080/cards'
 
-  create(date: DataCardsForm): Observable<CardDetails> {
-    return this.http.post<CardDetails>(this.baseUrl, date);
+  create(data: DataCardsForm): Observable<CardDetails> {
+    return this.http.post<CardDetails>(this.baseUrl, data);
   }
 
   getList(page: number = 0, size: number = 10): Observable<PageResult<CardDetails>> {
