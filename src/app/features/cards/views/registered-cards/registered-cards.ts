@@ -13,14 +13,15 @@ import { CANCEL, SAVE, UPDATE } from '../../../../shared/constants/shared.consta
 import { BRAND_LIST, BrandProps } from '../../../../shared/constants/shared.selects.constants';
 import { EDIT_CARD, NEW_CARD, THE_CARD_NAME_IS_REQUIRED, THE_CARD_NETWORK_IS_MANDATORY } from '../../constants/cards.constants';
 import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
+import { Header } from '../../../../shared/components/header/header';
 
 @Component({
   selector: 'app-registered-cards',
   imports: [
+    Breadcrumb,
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    Breadcrumb
   ],
   templateUrl: './registered-cards.html',
   styleUrl: './registered-cards.scss',

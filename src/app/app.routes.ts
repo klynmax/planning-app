@@ -9,11 +9,13 @@ export const routes: Routes = [
     children: [
       {
         path: 'registered-cards',
-        component: RegisteredCards
+        component: RegisteredCards,
+        data: { title: 'Cadastro de Cartões' },
       },
       {
         path: 'cards-listing',
-        component: CardListing
+        component: CardListing,
+        data: { title: 'Listagem de Cartões' },
       }
     ]
   }
