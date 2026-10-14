@@ -6,4 +6,6 @@ export const NEW_CARD = 'Novo Cartão';
 export const EDIT_CARD = 'Editar Cartão';
 export const REGISTER_NEW = 'Cadastrar Novo';
 export const THE_CARD_NAME_IS_REQUIRED = 'O nome do cartão é obrigatório';
+export const ERROR_LOADING_CARD_DATA = 'Erro ao carregar dados do cartão.';
 export const THE_CARD_NETWORK_IS_MANDATORY = 'A bandeira do cartão é obrigatória';
+

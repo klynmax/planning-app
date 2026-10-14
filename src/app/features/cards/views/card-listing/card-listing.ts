@@ -8,8 +8,8 @@ import { CardDetails } from '../../models/card-details.model';
 import { PageResult } from '../../../../shared/models/pagination/page-result';
 import { RECORD_SUCCESSFULLY_UPDATE } from '../../../../shared/constants/shared.constants';
 import { ACTIONS, BRAND, NAME, REGISTER_NEW, STATUS } from '../../constants/cards.constants';
-import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 import { CardBrandIcon } from '../../../../shared/components/card-brand-icon/card-brand-icon';
+import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 @Component({
   selector: 'app-card-listing',
