@@ -153,7 +153,6 @@ export class RegisteredCards implements OnInit {
   }
 
   private onApiError(response: any): void {
-    console.log('response: ', response)
     if(response.status === 422) {
       this.applyValidationErrors(response.error);
       this.toast.error(VALIDATION_ERROR_CHECK_THE_VALUES_PROVIDED);
