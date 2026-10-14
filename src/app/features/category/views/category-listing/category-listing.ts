@@ -6,8 +6,9 @@ import { Router, RouterLink } from '@angular/router';
 import { CategoryService } from '../../services/category-service';
 import { CategoryDetails } from '../../models/category-details.models';
 import { PageResult } from '../../../../shared/models/pagination/page-result';
-import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 import { ACTIONS, NAME, REGISTER_NEW, STATUS } from '../../constants/category.constants';
+import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
+import { RECORD_SUCCESSFULLY_UPDATE } from '../../../../shared/constants/shared.constants';
 
 @Component({
   selector: 'app-category-listing',
@@ -25,8 +26,8 @@ export class CategoryListing {
   list$!: Observable<PageResult<CategoryDetails>>;
 
   breadcrumb: BreadcrumbItem[] = [
-    { label: 'Categorias', url: '/cards-listing' },
-    { label: 'Listagem de Categorias', url: '/cards-listing' },
+    { label: 'Categorias', url: '#' },
+    { label: 'Listagem de Categorias'},
   ];
 
   /**
@@ -37,6 +38,7 @@ export class CategoryListing {
   readonly STATUS = STATUS;
   readonly ACTIONS = ACTIONS;
   readonly REGISTER_NEW = REGISTER_NEW;
+  readonly RECORD_SUCCESSFULLY_UPDATE = RECORD_SUCCESSFULLY_UPDATE;
 
    ngOnInit(): void {
     this.categoryListing();
@@ -84,11 +86,11 @@ export class CategoryListing {
   }
 
   updateStatus(idCard: string) {
-      this.service
+    this.service
       .updateStatus(idCard)
-      .subscribe(next => {
-        this.toast.success('Registro atualizado com sucesso!');
-        this.categoryListing();
-      })
-    }
+        .subscribe(next => {
+          this.toast.success(RECORD_SUCCESSFULLY_UPDATE);
+          this.categoryListing();
+        })
+  }
 }

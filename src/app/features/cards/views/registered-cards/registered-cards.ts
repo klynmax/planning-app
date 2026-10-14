@@ -1,3 +1,19 @@
+import {
+  SAVE,
+  CANCEL,
+  UPDATE,
+  VALIDATION_ERROR_CHECK_THE_VALUES_PROVIDED,
+  AN_ERROR_OCCURRED_WHILE_PROCESSING_THE_REQUEST,
+} from '../../../../shared/constants/shared.constants';
+
+import {
+  NEW_CARD,
+  EDIT_CARD,
+  THE_CARD_NAME_IS_REQUIRED,
+  THE_CARD_NETWORK_IS_MANDATORY,
+  ERROR_LOADING_CARD_DATA
+} from '../../constants/cards.constants';
+
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { CommonModule } from '@angular/common';
@@ -8,12 +24,9 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { DataCardsForm } from '../../models/data-cards-forms.model';
 import { RegisteredCardForms } from '../../models/registered-card-forms.model';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { ValidationErrorResponse } from '../../../../shared/models/validation/validation-error.model';
-import { CANCEL, SAVE, UPDATE } from '../../../../shared/constants/shared.constants';
 import { BRAND_LIST, BrandProps } from '../../../../shared/constants/shared.selects.constants';
-import { EDIT_CARD, NEW_CARD, THE_CARD_NAME_IS_REQUIRED, THE_CARD_NETWORK_IS_MANDATORY } from '../../constants/cards.constants';
 import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
-import { Header } from '../../../../shared/components/header/header';
+import { ValidationErrorResponse } from '../../../../shared/models/validation/validation-error.model';
 
 @Component({
   selector: 'app-registered-cards',
@@ -40,8 +53,21 @@ export class RegisteredCards implements OnInit {
   readonly UPDATE = UPDATE;
   readonly NEW_CARD = NEW_CARD;
   readonly EDIT_CARD = EDIT_CARD;
-  readonly THE_CARD_NAME_IS_REQUIRED = THE_CARD_NAME_IS_REQUIRED;
-  readonly THE_CARD_NETWORK_IS_MANDATORY = THE_CARD_NETWORK_IS_MANDATORY;
+
+  readonly ERROR_LOADING_CARD_DATA =
+    ERROR_LOADING_CARD_DATA;
+
+  readonly THE_CARD_NAME_IS_REQUIRED =
+    THE_CARD_NAME_IS_REQUIRED;
+
+  readonly THE_CARD_NETWORK_IS_MANDATORY =
+    THE_CARD_NETWORK_IS_MANDATORY;
+
+  readonly VALIDATION_ERROR_CHECK_THE_VALUES_PROVIDED =
+   VALIDATION_ERROR_CHECK_THE_VALUES_PROVIDED;
+
+  readonly AN_ERROR_OCCURRED_WHILE_PROCESSING_THE_REQUEST =
+    AN_ERROR_OCCURRED_WHILE_PROCESSING_THE_REQUEST;
 
   breadcrumb: BreadcrumbItem[] = [
     { label: 'Cartões', url: '/cards-listing' },
@@ -80,14 +106,14 @@ export class RegisteredCards implements OnInit {
           brand: card.brand
         })
       },
-      error: () => this.toast.error('Erro ao carregar dados do cartão.')
+      error: () => this.toast.error(ERROR_LOADING_CARD_DATA)
     });
   }
 
   isFormInvalid(): boolean {
     if(this.form.invalid) {
       this.form.markAllAsTouched();
-      this.toast.error('Erro de validação. Verifique os valores informados.');
+      this.toast.error(VALIDATION_ERROR_CHECK_THE_VALUES_PROVIDED);
       return true;
     }
     return false;
@@ -130,10 +156,10 @@ export class RegisteredCards implements OnInit {
     console.log('response: ', response)
     if(response.status === 422) {
       this.applyValidationErrors(response.error);
-      this.toast.error('Erro de validação. Verifique os valores informados.');
+      this.toast.error(VALIDATION_ERROR_CHECK_THE_VALUES_PROVIDED);
       return;
     }
-    this.toast.error('Ocorreu um erro ao processar a requisição.'),
+    this.toast.error(AN_ERROR_OCCURRED_WHILE_PROCESSING_THE_REQUEST),
     console.error(response.error)
   }
 

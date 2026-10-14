@@ -1,1 +1,40 @@
-<p>registered-category works!</p>
+<main class="content">
+  <app-breadcrumb [items]="breadcrumb" theme="sky" separator="›"  />
+  <div class="card-full">
+
+    <div class="registered-category-title">
+      <h2>{{ NEW_CATEGORY }}</h2>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="form">
+      <div class="form-group">
+        <label for="name">Nome da categoria: </label>
+        <input formControlName="name" type="text" id="name" name="name" placeholder="Ex: Alimentação" />
+        @if (form.controls.name.hasError('required') && form.controls.name.touched) {
+          <span class="form-hint form-hint-error">
+            {{ THE_CATEGORY_NAME_IS_REQUIRED }}
+          </span>
+        }
+
+        @if (form.controls.name.hasError('apiError') && form.controls.name.touched) {
+          <span class="form-hint form-hint-error">
+            {{ form.get('name')?.errors?.['apiError'] }}
+          </span>
+        }
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">
+          {{ SAVE }}
+        </button>
+        <button
+          type="button"
+          class="btn-secondary"
+          [routerLink]="['/category-listing']"
+        >
+          {{ CANCEL }}
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
