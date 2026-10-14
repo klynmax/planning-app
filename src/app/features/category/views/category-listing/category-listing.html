@@ -22,25 +22,25 @@
           </thead>
 
           <tbody>
-            @for(card of list.content; track card.id) {
+            @for(category of list.content; track category.id) {
               <tr>
-                <td>{{ card.name}}</td>
+                <td>{{ category.name}}</td>
                 <td>
                   <span
                     class="badge"
-                    [ngClass]="card.active ? 'badge-success' : 'badge-warning'"
+                    [ngClass]="category.active ? 'badge-success' : 'badge-warning'"
                   >
-                    {{ card.active ? 'Ativo' : 'Inativo' }}
+                    {{ category.active ? 'Ativo' : 'Inativo' }}
                   </span>
                 </td>
                 <td class="actions-cell">
                   <button
                     class="icon-btn"
-                    (click)="updateStatus(card.id)"
-                    [ngClass]="card.active ? 'danger' : 'success'"
-                    [attr.title]="card.active ? 'Desativar' : 'Ativar'"
+                    (click)="updateStatus(category.id)"
+                    [ngClass]="category.active ? 'danger' : 'success'"
+                    [attr.title]="category.active ? 'Desativar' : 'Ativar'"
                   >
-                    <i class="fa-solid" [ngClass]="card.active ? 'fa-ban' : 'fa-check'"></i>
+                    <i class="fa-solid" [ngClass]="category.active ? 'fa-ban' : 'fa-check'"></i>
                   </button>
                 </td>
               </tr>
