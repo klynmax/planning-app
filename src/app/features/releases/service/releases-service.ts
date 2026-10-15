@@ -4,6 +4,7 @@ import { DataReleaseForm } from '../models/data-release-form.model';
 import { Observable } from 'rxjs';
 import { ReleaseDetails } from '../models/releases-details.model';
 import { CardDetails } from '../../cards/models/card-details.model';
+import { CategoryDetails } from '../../category/models/category-details.models';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,8 @@ export class ReleasesService {
     return this.http.post<ReleaseDetails>(this.baseUrl, data);
   }
 
-  getAvailableCategories(): Observable<ReleaseDetails[]> {
-    return this.http.get<ReleaseDetails[]>(`${this.baseUrl}/available-categories`);
+  getAvailableCategories(): Observable<CategoryDetails[]> {
+    return this.http.get<CategoryDetails[]>(`${this.baseUrl}/available-categories`);
   }
 
   getAvailableCards(): Observable<CardDetails[]> {

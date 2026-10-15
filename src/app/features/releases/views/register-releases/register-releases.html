@@ -1,1 +1,114 @@
-<p>register-releases works!</p>
+<main class="content">
+  <div class="card">
+    <h2>{{ NEW_RELEASE }}</h2>
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="form">
+      <div class="form-group">
+        <label for="type">Tipo: *</label>
+        <select id="type" formControlName="type" (change)="handleTypeChange()">
+          <option>Selecione...</option>
+          <option value="EXPENSES">Despesas</option>
+          <option value="REVENUE">Receitas</option>
+        </select>
+
+        @if(form.controls.type.hasError('required') && form.controls.type.touched) {
+          <span class="form-hint form-hint-error">
+            O tipo é obrigatório.
+          </span>
+        }
+
+        @if(form.controls.type.hasError('apiError') && form.controls.type.touched) {
+          <span class="form-hint form-hint-error">
+           {{ form.get('type')?.errors?.['apiError'] }}
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="categoryId">Categoria: *</label>
+        <select id="categoryId" formControlName="categoryId">
+          <option>Selecione...</option>
+          @for (category of categoriesActive; track category.id) {
+            <option [value]="category.id">{{ category.name }}</option>
+          }
+        </select>
+        @if(form.controls.categoryId.hasError('required') && form.controls.categoryId.touched) {
+          <span class="form-hint form-hint-error">
+            A categoria é obrigatória.
+          </span>
+        }
+
+        @if(form.controls.categoryId.hasError('apiError') && form.controls.categoryId.touched) {
+          <span class="form-hint form-hint-error">
+           {{ form.get('categoryId')?.errors?.['apiError'] }}
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="date">Data: *</label>
+        <input id="date" name="date" formControlName="date" type="date" />
+        @if(form.controls.date.hasError('required') && form.controls.date.touched) {
+          <span class="form-hint form-hint-error">
+            A data é obrigatória.
+          </span>
+        }
+
+        @if(form.controls.categoryId.hasError('apiError') && form.controls.categoryId.touched) {
+          <span class="form-hint form-hint-error">
+           {{ form.get('date')?.errors?.['apiError'] }}
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="value">Valor: *</label>
+        <input
+          id="value"
+          type="text"
+          name="value"
+          mask="separator.2"
+          formControlName="value"
+        />
+        @if(form.controls.value.hasError('required') && form.controls.value.touched) {
+          <span class="form-hint form-hint-error">
+           O valor é obrigatório.
+          </span>
+        }
+
+         @if(form.controls.value.hasError('min') && form.controls.value.touched) {
+          <span class="form-hint form-hint-error">
+            O valor deve ser maior que zero.
+          </span>
+        }
+
+        @if(form.controls.categoryId.hasError('apiError') && form.controls.categoryId.touched) {
+          <span class="form-hint form-hint-error">
+           {{ form.get('value')?.errors?.['apiError'] }}
+          </span>
+        }
+      </div>
+
+      @if (isExpenses()) {
+        <div class="form-group">
+          <label for="cardId">Cartão: </label>
+          <select id="cardId" formControlName="cardId">
+            <option>Selecione...</option>
+            @for (card of cardActive; track card.id) {
+              <option [value]="card.id">{{ card.name }}</option>
+            }
+          </select>
+
+          @if(form.controls.cardId.hasError('apiError') && form.controls.cardId.touched) {
+            <span class="form-hint form-hint-error">
+              {{ form.get('value')?.errors?.['apiError'] }}
+            </span>
+          }
+        </div>
+      }
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Salvar</button>
+        <button type="button" class="btn-secondary">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</main>
