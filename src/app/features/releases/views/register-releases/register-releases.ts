@@ -1,15 +1,39 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { DataReleaseForm, TYPERELEASE } from '../../models/data-release-form.model';
-import { ToastrService } from 'ngx-toastr';
-import { ReleasesService } from '../../service/releases-service';
-import { CategoryDetails } from '../../../category/models/category-details.models';
-import { CardDetails } from '../../../cards/models/card-details.model';
+import {
+  FormGroup,
+  Validators,
+  FormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
+import {
+  NEW_RELEASE,
+  THE_DATE_IS_MANDATORY,
+  THE_TYPE_IS_MANDATORY,
+  THE_VALUE_IS_MANDATORY,
+  THE_CATEGORY_IS_MANDATORY,
+  THE_DESCRIPTION_IS_MANDATORY,
+  ENTRY_SUCCESSFULLY_REGISTERED,
+  ERROR_LOADING_CATEGORIES_AND_CARDS,
+  THE_VALUE_MUST_BE_GREATER_THAN_ZERO
+} from '../../constants/release.constants';
+
+import {
+  SAVE,
+  CANCEL,
+  VALIDATION_ERROR_CHECK_THE_VALUES_PROVIDED,
+  AN_ERROR_OCCURRED_WHILE_PROCESSING_THE_REQUEST,
+} from '../../../../shared/constants/shared.constants';
+
 import { forkJoin } from 'rxjs';
-import { ENTRY_SUCCESSFULLY_REGISTERED, ERROR_LOADING_CATEGORIES_AND_CARDS, NEW_RELEASE } from '../../constants/release.constants';
-import { CommonModule } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 import { NgxMaskDirective } from 'ngx-mask';
-import { AN_ERROR_OCCURRED_WHILE_PROCESSING_THE_REQUEST, VALIDATION_ERROR_CHECK_THE_VALUES_PROVIDED } from '../../../../shared/constants/shared.constants';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { ReleasesService } from '../../service/releases-service';
+import { CardDetails } from '../../../cards/models/card-details.model';
+import { DataReleaseForm, TYPERELEASE } from '../../models/data-release-form.model';
+import { CategoryDetails } from '../../../category/models/category-details.models';
 import { ValidationErrorResponse } from '../../../../shared/models/validation/validation-error.model';
 
 interface ReleaseRegistrationForm {
@@ -17,13 +41,14 @@ interface ReleaseRegistrationForm {
   value: FormControl<string>;
   cardId: FormControl<string>
   categoryId: FormControl<string>;
+  description: FormControl<string>;
   type: FormControl<TYPERELEASE | ''>
-
 }
 
 @Component({
   selector: 'app-register-releases',
   imports: [
+    RouterLink,
     CommonModule,
     NgxMaskDirective,
     ReactiveFormsModule,
@@ -42,7 +67,19 @@ export class RegisterReleases implements OnInit {
   /**
    * Constants
    */
+  readonly SAVE = SAVE;
+  readonly CANCEL = CANCEL;
   readonly NEW_RELEASE = NEW_RELEASE;
+  readonly THE_TYPE_IS_MANDATORY = THE_TYPE_IS_MANDATORY;
+  readonly THE_DATE_IS_MANDATORY = THE_DATE_IS_MANDATORY;
+  readonly THE_VALUE_IS_MANDATORY = THE_VALUE_IS_MANDATORY;
+  readonly THE_CATEGORY_IS_MANDATORY = THE_CATEGORY_IS_MANDATORY;
+
+  readonly THE_VALUE_MUST_BE_GREATER_THAN_ZERO =
+    THE_VALUE_MUST_BE_GREATER_THAN_ZERO;
+
+  readonly THE_DESCRIPTION_IS_MANDATORY =
+    THE_DESCRIPTION_IS_MANDATORY
 
   readonly ENTRY_SUCCESSFULLY_REGISTERED =
     ENTRY_SUCCESSFULLY_REGISTERED
@@ -63,6 +100,7 @@ export class RegisterReleases implements OnInit {
       value: new FormControl<string>('', { nonNullable: true, validators: [Validators.required, Validators.min(1)] }),
       type: new FormControl<TYPERELEASE | ''>('', { nonNullable: true, validators: Validators.required }),
       cardId: new FormControl<string>('', { nonNullable: true }),
+      description: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
     });
 
     this.initializeDropDowns();

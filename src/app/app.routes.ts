@@ -5,6 +5,7 @@ import { CardListing } from './features/cards/views/card-listing/card-listing';
 import { CategoryListing } from './features/category/views/category-listing/category-listing';
 import { RegisteredCategory } from './features/category/views/registered-category/registered-category';
 import { RegisterReleases } from './features/releases/views/register-releases/register-releases';
+import { ListingReleases } from './features/releases/views/listing-releases/listing-releases';
 export const routes: Routes = [
   {
     path: '',
@@ -34,6 +35,11 @@ export const routes: Routes = [
         path: 'register-release',
         component: RegisterReleases,
         data: { title: 'Cadastro de Lançamentos' },
+      },
+      {
+        path: 'release-listing',
+        component: ListingReleases,
+        data: { title: 'Listagem de Lançamentos' },
       }
     ]
   }

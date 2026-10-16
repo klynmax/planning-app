@@ -6,6 +6,7 @@ export class ReleaseDetails {
   date!: string;
   value!: string;
   cardName?: string;
+  description!: string;
   categoryName!: string;
   cardId?: string | null;
   categoryId!: TYPERELEASE;

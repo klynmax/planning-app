@@ -1,0 +1,116 @@
+<main class="content">
+  <div class="card-full">
+    <button
+      type="button"
+      class="btn-secondary"
+      [routerLink]="['/register-release']"
+    >
+      <i class="fa-solid fa-plus"></i>
+      {{ REGISTER_NEW }}
+    </button>
+
+    <div class="table-card">
+      <form [formGroup]="form" class="form" (ngSubmit)="applyFilter()">
+        <div class="filter-grid">
+          <div class="form-group filter-col">
+            <label for="month">Mês:</label>
+            <input type="month" id="month" name="month" formControlName="month" />
+          </div>
+          <div class="form-group filter-col">
+            <label for="type">Tipo:</label>
+            <select id="type" name="type" formControlName="type">
+              <option value="">Todos</option>
+              <option value="EXPENSES">Despesas</option>
+              <option value="REVENUE">Receitas</option>
+            </select>
+          </div>
+          <div class="form-group filter-col">
+            <label for="categoryId">Categorias:</label>
+            <select id="categoryId" name="categoryId" formControlName="categoryId">
+              <option value="">Todas</option>
+              @for(categoryList of category; track categoryList.id) {
+                <option [value]="categoryList.id">{{ categoryList.name }}</option>
+              }
+            </select>
+          </div>
+        </div>
+        <div class="form-actions filtros-actions">
+          <button type="submit" class="btn-primary">Filtrar</button>
+          <button
+            type="button"
+            class="btn-secondary"
+            (click)="cleanFilters()"
+          >
+            Limpar
+          </button>
+        </div>
+      </form>
+
+      @if(listing$ | async; as newListing) {
+        <table class="datatable">
+          <thead>
+            <tr>
+              <th>{{ DATE }}</th>
+              <th>{{ CATEGORY }}</th>
+              <th>{{ TYPE }}</th>
+              <th>{{ DESCRIPTION }}</th>
+              <th>{{ VALUE }}</th>
+              <th>{{ ACTION }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(releases of newListing.content; track releases.id) {
+              <tr>
+                <td>{{ releases.date | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ releases.categoryName }}</td>
+                <td>{{ releases.type == 'EXPENSES' ? 'Despesa' : 'Receita' }}</td>
+                <td>{{ releases.description }}</td>
+                <td>{{ releases.value | currency: 'BRL'}}</td>
+                <td>
+                  <button class="icon-btn danger" title="Excluir" (click)="delete(releases.id)">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <div class="table-footer">
+          <span>
+            Mostrando {{ initialRecord(newListing) }} - {{ finalRecord(newListing) }}
+            de {{ newListing.totalElements }} Registro
+          </span>
+
+          <div class="pagination">
+            <button
+              class="page-btn"
+              [class.disabled]="newListing.first"
+              (click)="navigationPrevious(newListing);"
+            >
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            @for (pages of pages(newListing.totalPages); track pages) {
+              <button
+                class="page-btn"
+                [class.active]="pages === newListing.number"
+                (click)="navigation(pages)"
+              >
+                {{ pages + 1 }}
+              </button>
+            }
+
+            <button
+              class="page-btn"
+              [class.disabled]="newListing.last"
+              (click)="navigationNext(newListing);"
+            >
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</main>
