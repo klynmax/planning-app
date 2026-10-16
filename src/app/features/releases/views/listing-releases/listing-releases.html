@@ -1,4 +1,5 @@
 <main class="content">
+  <app-breadcrumb [items]="breadcrumb" theme="sky" separator="›"  />
   <div class="card-full">
     <button
       type="button"
@@ -47,7 +48,7 @@
       </form>
 
       @if(listing$ | async; as newListing) {
-        <table class="datatable">
+        <table class="datatable content-table ">
           <thead>
             <tr>
               <th>{{ DATE }}</th>

@@ -35,6 +35,7 @@ import { CardDetails } from '../../../cards/models/card-details.model';
 import { DataReleaseForm, TYPERELEASE } from '../../models/data-release-form.model';
 import { CategoryDetails } from '../../../category/models/category-details.models';
 import { ValidationErrorResponse } from '../../../../shared/models/validation/validation-error.model';
+import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 interface ReleaseRegistrationForm {
   date: FormControl<string>;
@@ -49,6 +50,7 @@ interface ReleaseRegistrationForm {
   selector: 'app-register-releases',
   imports: [
     RouterLink,
+    Breadcrumb,
     CommonModule,
     NgxMaskDirective,
     ReactiveFormsModule,
@@ -63,6 +65,11 @@ export class RegisterReleases implements OnInit {
 
   categoriesActive: CategoryDetails[] = [];
   cardActive: CardDetails[] = [];
+
+  breadcrumb: BreadcrumbItem[] = [
+      { label: 'Lançamentos', url: '/release-listing' },
+      { label: 'Cadastro de Lançamentos'},
+    ];
 
   /**
    * Constants

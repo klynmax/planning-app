@@ -10,6 +10,7 @@ import { PageResult } from '../../../../shared/models/pagination/page-result';
 import { ReleaseDetails } from '../../models/releases-details.model';
 import { ACTION, CATEGORY, DATE, DESCRIPTION, ENTRY_SUCCESSFULLY_DELETED, ERROR_DELETING_ENTRY, ERROR_LOADING_CATEGORIES_FOR_FILTERS, REGISTER_NEW, TYPE, VALUE } from '../../constants/release.constants';
 import { CategoryDetails } from '../../../category/models/category-details.models';
+import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 interface FiltersForm {
   month: FormControl<string>;
@@ -21,6 +22,7 @@ interface FiltersForm {
   selector: 'app-listing-releases',
   imports: [
     RouterLink,
+    Breadcrumb,
     CommonModule,
     ReactiveFormsModule
   ],
@@ -29,15 +31,18 @@ interface FiltersForm {
 })
 export class ListingReleases implements OnInit {
 
-  service = inject(ReleasesService);
-  toast = inject(ToastrService);
-
-  listing$!: Observable<PageResult<ReleaseDetails>>;
-  category: CategoryDetails[] = [];
-  actualPage = 0;
   sizePage = 10;
-
+  actualPage = 0;
   form!: FormGroup
+  toast = inject(ToastrService);
+  category: CategoryDetails[] = [];
+  service = inject(ReleasesService);
+  listing$!: Observable<PageResult<ReleaseDetails>>;
+
+   breadcrumb: BreadcrumbItem[] = [
+      { label: 'Lançamentos', url: '#' },
+      { label: 'Listagem de Lançamentos'},
+    ];
 
   /**
    * Constants
