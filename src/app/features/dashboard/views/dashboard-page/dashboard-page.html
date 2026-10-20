@@ -1,0 +1,105 @@
+<main class="content">
+  @if(dashboard$ | async; as dashboard) {
+    <section class="dashboard-grid">
+      <div class="metric-card metric-card-balance">
+        <span class="metric-label">{{ CURRENT_BALANCE }}</span>
+        <strong
+          [ngClass]="dashboard.summary.balance >= 0 ? 'metric-positive' : 'metric-negative'"
+        >
+          {{ formatCurrency(dashboard.summary.balance) }}
+        </strong>
+        <small>{{ formatMonth(dashboard.month) }}</small>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">{{ REVENUES }}</span>
+        <strong class="metric-positive">{{ formatCurrency(dashboard.summary.revenues)}}</strong>
+        <small>{{ CURRENT_MONTH }}</small>
+      </div>
+
+      <div class="metric-card">
+        <span class="metric-label">{{ EXPENSES }}</span>
+        <strong class="metric-negative">{{ formatCurrency(dashboard.summary.expenses)}}</strong>
+        <small>{{ CURRENT_MONTH }}</small>
+      </div>
+    </section>
+
+    <section class="charts-grid">
+      <div class="chart-panel">
+        <div class="chart-header">
+          <h2>{{`${REVENUES} x ${EXPENSES}`}}</h2>
+          <span>{{ formatMonth(dashboard.month) }}</span>
+        </div>
+        <div class="comparison-chart">
+          <div class="comparison-row">
+            <div class="comparison-label">
+              <span>{{ REVENUES }}</span>
+              <strong>{{ formatCurrency(dashboard.summary.balance) }}</strong>
+            </div>
+            <div class="bar-track">
+              <div
+                class="bar-fill income"
+                [style.width.%]="percentage(
+                  dashboard.summary.balance,
+                  dashboard.summary.balance + dashboard.summary.expenses
+                )"
+              ></div>
+            </div>
+          </div>
+
+          <div class="comparison-row">
+            <div class="comparison-label">
+              <span>{{ EXPENSES }}</span>
+              <strong>{{ formatCurrency(dashboard.summary.expenses) }}</strong>
+            </div>
+            <div class="bar-track">
+              <div
+                class="bar-fill expense"
+                [style.width.%]="percentage(
+                  dashboard.summary.expenses,
+                  dashboard.summary.balance + dashboard.summary.expenses
+                )"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-panel">
+        <div class="chart-header">
+          <h2>{{ EXPENSES_BY_CATEGORY }}</h2>
+          <span>Despesas</span>
+        </div>
+
+        @if(dashboard.expenseByCategory.length) {
+          <div class="category-chart">
+            @for(expense of dashboard.expenseByCategory; track expense.category) {
+              <div class="category-row">
+                <div class="category-label">
+                  <span>{{ expense.category }}</span>
+                  <strong>{{ formatCurrency(expense.value) }}</strong>
+                </div>
+                <div class="bar-track">
+                  <div
+                    class="bar-fill category"
+                    [style.width.%]="percentage(
+                      expense.value,
+                      largestExpenseCategory(dashboard.expenseByCategory)
+                    )"
+                  >
+
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <i class="fa-solid fa-chart-pie"></i>
+            <span>{{ NO_EXPENSES_RECORDED_FOR_THE_CURRENT_MONTH }}</span>
+          </div>
+        }
+      </div>
+    </section>
+  }
+</main>

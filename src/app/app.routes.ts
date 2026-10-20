@@ -6,11 +6,17 @@ import { CategoryListing } from './features/category/views/category-listing/cate
 import { RegisteredCategory } from './features/category/views/registered-category/registered-category';
 import { RegisterReleases } from './features/releases/views/register-releases/register-releases';
 import { ListingReleases } from './features/releases/views/listing-releases/listing-releases';
+import { DashboardPage } from './features/dashboard/views/dashboard-page/dashboard-page';
 export const routes: Routes = [
   {
     path: '',
     component: Template,
     children: [
+      {
+        path: '',
+        component: DashboardPage,
+        data: { title: 'Dashboard' },
+      },
       {
         path: 'registered-cards',
         component: RegisteredCards,
