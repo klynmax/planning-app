@@ -1,10 +1,18 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { DashboardService } from '../../service/dashboard-service';
+import {
+  EXPENSES,
+  REVENUES,
+  CURRENT_MONTH,
+  CURRENT_BALANCE,
+  EXPENSES_BY_CATEGORY,
+  NO_EXPENSES_RECORDED_FOR_THE_CURRENT_MONTH,
+} from '../../constants/dashboard.constants';
+
 import { Observable } from 'rxjs';
-import { DashboardModel } from '../../models/dashboard.model';
 import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { DashboardModel } from '../../models/dashboard.model';
+import { DashboardService } from '../../service/dashboard-service';
 import { ExpenseCategorySummary } from '../../models/expense-category-summary.model';
-import { CURRENT_BALANCE, CURRENT_MONTH, EXPENSES, EXPENSES_BY_CATEGORY, NO_EXPENSES_RECORDED_FOR_THE_CURRENT_MONTH, REVENUES } from '../../constants/dashboard.constants';
 
 @Component({
   selector: 'app-dashboard-page',
