@@ -23,7 +23,7 @@ export const routes: Routes = [
     component: Template,
     children: [
       {
-        path: '',
+        path: 'dashboard',
         component: DashboardPage,
         data: { title: 'Dashboard' },
       },
