@@ -7,7 +7,17 @@ import { RegisteredCategory } from './features/category/views/registered-categor
 import { RegisterReleases } from './features/releases/views/register-releases/register-releases';
 import { ListingReleases } from './features/releases/views/listing-releases/listing-releases';
 import { DashboardPage } from './features/dashboard/views/dashboard-page/dashboard-page';
+import { LoginForm } from './features/auth/login/views/login-form/login-form';
 export const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginForm
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
   {
     path: '',
     component: Template,
