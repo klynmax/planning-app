@@ -1,0 +1,23 @@
+.sidebar-footer {
+  margin-top: auto;
+  padding: 4px 0;
+  flex-shrink: 0;
+  background-color: var(--turquesa-escuro);
+}
+
+.sidebar-footer:hover {
+  background-color: var(--amarelo);
+  color: #333;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+}

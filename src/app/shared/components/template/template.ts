@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { Header } from '../header/header';
+import { AuthService } from '../../../features/auth/login/services/auth-service';
 
 
 @Component({
@@ -9,4 +10,10 @@ import { Header } from '../header/header';
   templateUrl: './template.html',
   styleUrl: './template.scss',
 })
-export class Template {}
+export class Template {
+  authService = inject(AuthService)
+
+  logout() {
+    this.authService.logout(true);
+  }
+}

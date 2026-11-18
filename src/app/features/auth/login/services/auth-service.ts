@@ -122,4 +122,8 @@ export class AuthService {
       return null
     }
   }
+
+  getUserName() {
+    return localStorage.getItem(this.userNameKey);
+  }
 }

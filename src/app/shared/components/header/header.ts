@@ -1,7 +1,8 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
+import { AuthService } from '../../../features/auth/login/services/auth-service';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,16 @@ import { filter, map } from 'rxjs';
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
-export class Header {
-   private router = inject(Router);
+export class Header implements OnInit {
+  private router = inject(Router);
   private route = inject(ActivatedRoute);
+
+  authService = inject(AuthService);
+  userNameActive = '';
+
+  ngOnInit(): void {
+    this.userNameActive = this.authService.getUserName() ?? 'Usuário';
+  }
 
   readonly title = toSignal(
     this.router.events.pipe(
