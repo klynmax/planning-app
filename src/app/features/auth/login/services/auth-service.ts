@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { AuthResponse } from '../models/auth-response.model';
 import { RegisterUserForm } from '../models/register-user-form.model';
 import { LoginFormModel } from '../models/login-form.model';
@@ -25,12 +25,14 @@ export class AuthService {
   baseUrl = 'http://localhost:8080/auth';
 
   login(data: LoginFormModel): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.baseUrl}/signin`, data);
+    return this.http.post<AuthResponse>(`${this.baseUrl}/signin`, data)
+      .pipe(tap(response => this.initSession(response)));
   }
 
 
   register(data: RegisterUserForm): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.baseUrl}/signup`, data);
+    return this.http.post<AuthResponse>(`${this.baseUrl}/signup`, data)
+      .pipe(tap(response => this.initSession(response)));
   }
 
   initSession(response: AuthResponse) {

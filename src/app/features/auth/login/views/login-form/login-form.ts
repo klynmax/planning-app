@@ -34,6 +34,10 @@ export class LoginForm implements OnInit {
       login: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
       password: new FormControl<string>('', { nonNullable: true, validators: [Validators.required, Validators.min(6)] }),
     });
+
+    if(this.authService.isAutenticate()) {
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   updateModel(mode: 'login' | 'register'): void {
