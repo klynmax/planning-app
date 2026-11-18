@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './features/auth/auth-guard';
 import { Template } from './shared/components/template/template';
 import { RegisteredCards } from './features/cards/views/registered-cards/registered-cards';
 import { CardListing } from './features/cards/views/card-listing/card-listing';
@@ -21,6 +22,7 @@ export const routes: Routes = [
   {
     path: '',
     component: Template,
+    canActivate: [authGuard],
     children: [
       {
         path: 'dashboard',
