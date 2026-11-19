@@ -1,5 +1,6 @@
 export const LOGIN = 'Login: *';
 export const PASSWORD = 'Senha: *';
+export const REGISTER = 'Cadastrar';
 export const USER_NAME = 'Nome do usuário: *'
 export const ENTER_YOUR_LOGIN = 'Informe o login';
 export const ENTER_THE_PASSWORD = 'Informe a senha';

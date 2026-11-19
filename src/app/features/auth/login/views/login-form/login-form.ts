@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { RegisterUserForm } from '../../models/register-user-form.model';
 import { LoginFormModel } from '../../models/login-form.model';
 import { APP_NAME, LOGIN } from '../../../../../shared/constants/shared.constants';
-import { ENTER_THE_PASSWORD, ENTER_THE_USERS_NAME, ENTER_YOUR_LOGIN, PASSWORD, THE_PASSWORD_MUST_BE_AT_LEAST_SIX_CHARACTERS_LONG, USER_NAME } from '../../constants/login.constants';
+import { ENTER_THE_PASSWORD, ENTER_THE_USERS_NAME, ENTER_YOUR_LOGIN, PASSWORD, REGISTER, THE_PASSWORD_MUST_BE_AT_LEAST_SIX_CHARACTERS_LONG, USER_NAME } from '../../constants/login.constants';
 
 interface AuthForm {
   name: FormControl<string>;
@@ -26,6 +26,7 @@ export class LoginForm implements OnInit {
   readonly LOGIN = LOGIN;
   readonly PASSWORD = PASSWORD;
   readonly APP_NAME = APP_NAME;
+  readonly REGISTER = REGISTER;
   readonly USER_NAME = USER_NAME;
   readonly ENTER_YOUR_LOGIN = ENTER_YOUR_LOGIN;
   readonly ENTER_THE_PASSWORD = ENTER_THE_PASSWORD;
