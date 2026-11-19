@@ -2,7 +2,7 @@
   <section class="auth-panel">
     <div class="brand">
       <i class="fa-solid fa-wallet"></i>
-      <span>Planeja</span>
+      <span>{{ APP_NAME }}</span>
     </div>
     <div class="mode-switch">
       <button
@@ -10,47 +10,47 @@
         [class.active]="mode === 'login'"
         (click)="updateModel('login')"
       >
-        Login
+        {{ LOGIN }}
       </button>
       <button
         type="button"
         [class.active]="mode === 'register'"
         (click)="updateModel('register')"
       >
-        Login
+        {{ LOGIN }}
       </button>
     </div>
     <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="auth-form">
       @if(mode === 'register') {
         <div class="form-group">
-          <label for="name">Nome do usuário: *</label>
+          <label for="name">{{ USER_NAME }}</label>
           <input type="text" id="name" formControlName="name" />
 
           @if(form.controls.name.hasError('required') && form.controls.name.touched) {
-            <span class="form-hint form-hint-error">Informe o nome do usuário.</span>
+            <span class="form-hint form-hint-error">{{ ENTER_THE_USERS_NAME }}</span>
           }
         </div>
       }
 
       <div class="form-group">
-        <label for="login">Login: *</label>
+        <label for="login">{{ LOGIN }}</label>
         <input type="text" id="login" formControlName="login" />
 
         @if(form.controls.login.hasError('required') && form.controls.login.touched) {
-          <span class="form-hint form-hint-error">Informe o login.</span>
+          <span class="form-hint form-hint-error">{{ ENTER_YOUR_LOGIN }}</span>
         }
       </div>
 
       <div class="form-group">
-        <label for="login">Senha: *</label>
+        <label for="login">{{ PASSWORD }}</label>
         <input type="password" id="password" formControlName="password" />
 
         @if(form.controls.password.hasError('required') && form.controls.password.touched) {
-          <span class="form-hint form-hint-error">Informe a senha.</span>
+          <span class="form-hint form-hint-error">{{ ENTER_THE_PASSWORD }}</span>
         }
 
          @if(form.controls.password.hasError('minLength') && form.controls.password.touched) {
-          <span class="form-hint form-hint-error">A senha deve ter pelo menos 6 caracteres.</span>
+          <span class="form-hint form-hint-error">{{ THE_PASSWORD_MUST_BE_AT_LEAST_SIX_CHARACTERS_LONG }}</span>
         }
       </div>
 

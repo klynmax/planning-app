@@ -10,6 +10,8 @@ export const CATEGORIES = 'Categorias';
 export const NEW_RELEASES = 'Lançamentos';
 export const CREDIT_CARDS = 'Cartões de crédito';
 
+export const LOGIN = 'Login';
+
 export const RECORD_SUCCESSFULLY_UPDATE =
   'Registro atualizado com sucesso!';
 

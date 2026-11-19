@@ -1,7 +1,7 @@
-import { Component, inject, input, OnInit } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter, map } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../../../features/auth/login/services/auth-service';
 
 @Component({

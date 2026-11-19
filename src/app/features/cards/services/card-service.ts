@@ -1,8 +1,8 @@
+import { Observable } from 'rxjs';
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { DataCardsForm } from '../models/data-cards-forms.model';
 import { CardDetails } from '../models/card-details.model';
+import { DataCardsForm } from '../models/data-cards-forms.model';
 import { PageResult } from '../../../shared/models/pagination/page-result';
 
 @Injectable({

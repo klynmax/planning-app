@@ -1,11 +1,11 @@
+import { Observable, tap } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { LoginFormModel } from '../models/login-form.model';
 import { AuthResponse } from '../models/auth-response.model';
 import { RegisterUserForm } from '../models/register-user-form.model';
-import { LoginFormModel } from '../models/login-form.model';
-import { Router } from '@angular/router';
-import { jwtDecode } from 'jwt-decode';
 
 interface jwtPayload {
   exp?: number;
