@@ -1,6 +1,6 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { DashboardModel } from '../models/dashboard.model';
 
 @Injectable({

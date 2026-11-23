@@ -1,12 +1,12 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { DataReleaseForm } from '../models/data-release-form.model';
 import { Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { ReleaseFilter } from '../models/releases-filter.model';
 import { ReleaseDetails } from '../models/releases-details.model';
 import { CardDetails } from '../../cards/models/card-details.model';
-import { CategoryDetails } from '../../category/models/category-details.models';
-import { ReleaseFilter } from '../models/releases-filter.model';
+import { DataReleaseForm } from '../models/data-release-form.model';
 import { PageResult } from '../../../shared/models/pagination/page-result';
+import { CategoryDetails } from '../../category/models/category-details.models';
 
 @Injectable({
   providedIn: 'root',

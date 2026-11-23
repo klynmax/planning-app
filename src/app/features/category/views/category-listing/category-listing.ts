@@ -7,8 +7,8 @@ import { CategoryService } from '../../services/category-service';
 import { CategoryDetails } from '../../models/category-details.models';
 import { PageResult } from '../../../../shared/models/pagination/page-result';
 import { ACTIONS, NAME, REGISTER_NEW, STATUS } from '../../constants/category.constants';
-import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 import { RECORD_SUCCESSFULLY_UPDATE } from '../../../../shared/constants/shared.constants';
+import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 
 @Component({
   selector: 'app-category-listing',

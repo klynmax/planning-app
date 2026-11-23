@@ -1,13 +1,28 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth-service';
+import {
+  FormGroup,
+  Validators,
+  FormControl,
+  ReactiveFormsModule,
+} from '@angular/forms';
+
+import {
+  REGISTER,
+  PASSWORD,
+  USER_NAME ,
+  ENTER_YOUR_LOGIN,
+  ENTER_THE_PASSWORD,
+  ENTER_THE_USERS_NAME,
+  THE_PASSWORD_MUST_BE_AT_LEAST_SIX_CHARACTERS_LONG,
+} from '../../constants/login.constants';
+
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { RegisterUserForm } from '../../models/register-user-form.model';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth-service';
 import { LoginFormModel } from '../../models/login-form.model';
+import { RegisterUserForm } from '../../models/register-user-form.model';
 import { APP_NAME, LOGIN } from '../../../../../shared/constants/shared.constants';
-import { ENTER_THE_PASSWORD, ENTER_THE_USERS_NAME, ENTER_YOUR_LOGIN, PASSWORD, REGISTER, THE_PASSWORD_MUST_BE_AT_LEAST_SIX_CHARACTERS_LONG, USER_NAME } from '../../constants/login.constants';
 
 interface AuthForm {
   name: FormControl<string>;

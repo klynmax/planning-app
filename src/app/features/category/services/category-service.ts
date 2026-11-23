@@ -1,8 +1,8 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { DataCategoryForms } from '../models/data-category-forms.model';
-import { Observable } from 'rxjs';
 import { CategoryDetails } from '../models/category-details.models';
+import { DataCategoryForms } from '../models/data-category-forms.model';
 import { PageResult } from '../../../shared/models/pagination/page-result';
 
 @Injectable({

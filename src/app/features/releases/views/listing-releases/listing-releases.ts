@@ -1,14 +1,31 @@
-import { Component, Inject, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TYPERELEASE } from '../../models/data-release-form.model';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
-import { ReleasesService } from '../../service/releases-service';
-import { ToastrService } from 'ngx-toastr';
+import {
+  DATE,
+  TYPE,
+  VALUE,
+  ACTION,
+  CATEGORY,
+  DESCRIPTION,
+  REGISTER_NEW,
+  ERROR_DELETING_ENTRY,
+  ENTRY_SUCCESSFULLY_DELETED,
+  ERROR_LOADING_CATEGORIES_FOR_FILTERS,
+} from '../../constants/release.constants';
+
+import {
+  FormGroup,
+  FormControl,
+  ReactiveFormsModule
+} from '@angular/forms';
+
 import { Observable } from 'rxjs';
-import { PageResult } from '../../../../shared/models/pagination/page-result';
+import { ToastrService } from 'ngx-toastr';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { ReleasesService } from '../../service/releases-service';
+import { TYPERELEASE } from '../../models/data-release-form.model';
 import { ReleaseDetails } from '../../models/releases-details.model';
-import { ACTION, CATEGORY, DATE, DESCRIPTION, ENTRY_SUCCESSFULLY_DELETED, ERROR_DELETING_ENTRY, ERROR_LOADING_CATEGORIES_FOR_FILTERS, REGISTER_NEW, TYPE, VALUE } from '../../constants/release.constants';
+import { PageResult } from '../../../../shared/models/pagination/page-result';
 import { CategoryDetails } from '../../../category/models/category-details.models';
 import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 

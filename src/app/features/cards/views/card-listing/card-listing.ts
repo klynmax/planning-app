@@ -1,3 +1,11 @@
+import {
+  NAME,
+  BRAND,
+  STATUS,
+  ACTIONS,
+  REGISTER_NEW,
+} from '../../constants/cards.constants';
+
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { Toast, ToastrService } from 'ngx-toastr';
@@ -7,7 +15,6 @@ import { CardService } from '../../services/card-service';
 import { CardDetails } from '../../models/card-details.model';
 import { PageResult } from '../../../../shared/models/pagination/page-result';
 import { RECORD_SUCCESSFULLY_UPDATE } from '../../../../shared/constants/shared.constants';
-import { ACTIONS, BRAND, NAME, REGISTER_NEW, STATUS } from '../../constants/cards.constants';
 import { CardBrandIcon } from '../../../../shared/components/card-brand-icon/card-brand-icon';
 import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
 

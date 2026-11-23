@@ -32,10 +32,10 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ReleasesService } from '../../service/releases-service';
 import { CardDetails } from '../../../cards/models/card-details.model';
-import { DataReleaseForm, TYPERELEASE } from '../../models/data-release-form.model';
 import { CategoryDetails } from '../../../category/models/category-details.models';
-import { ValidationErrorResponse } from '../../../../shared/models/validation/validation-error.model';
+import { DataReleaseForm, TYPERELEASE } from '../../models/data-release-form.model';
 import { Breadcrumb, BreadcrumbItem } from '../../../../shared/components/breadcrumb/breadcrumb';
+import { ValidationErrorResponse } from '../../../../shared/models/validation/validation-error.model';
 
 interface ReleaseRegistrationForm {
   date: FormControl<string>;
